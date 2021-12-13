@@ -1,0 +1,49 @@
+<br /><br />
+<div class="row">
+    <div class="col-md-12">
+
+        <?php
+        if (isset($_REQUEST['error']) AND $_REQUEST['error'])
+            echo "<br /><q style='color:red'>Credentials are incorrect</q>";
+        ?>
+
+        <form action="/?action=addlinksubmitted" class="form-horizontal"  method="post">
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="link" name="link" placeholder="Shorten your link">
+                </div>
+
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+    <div class="col-md-8" style="word-break: break-all">
+        <?php echo $_SESSION['link'] ?>
+    </div>
+    <div id="shortened" class="col-md-2" style="word-break: break-all">
+        <a href="<?php echo 'http://' . $_SERVER['SERVER_NAME'] . '/' . $_SESSION['short'];?>">
+            <?php echo $_SERVER['SERVER_NAME'] . '/' . $_SESSION['short'];?>
+        </a>
+    </div>
+    <div class="col-md-2"> <button onclick="copyDivToClipboard()" type="button" class="btn btn-default">Copy to Clipboard</button> </div>
+    </div>
+</div>
+<script>
+    function copyDivToClipboard() {
+        var range = document.createRange();
+        range.selectNode(document.getElementById("shortened"));
+        window.getSelection().removeAllRanges(); // clear current selection
+        window.getSelection().addRange(range); // to select text
+        document.execCommand("copy");
+        window.getSelection().removeAllRanges();// to deselect
+    }
+</script>
+<?php
+unset($_SESSION['short']);
+unset($_SESSION['link']);
+?>

@@ -1,0 +1,16 @@
+{
+    "name": "marcin/bitly",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Marcin Kantarowski",
+            "email": "marcin.kantarowski@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}
